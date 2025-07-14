@@ -1,46 +1,46 @@
-# XRAY_classifier-
-🩺 ChestX-ray Multi-label Classification with InceptionV3
-This repository contains a deep learning pipeline for multi-label classification of chest X-ray images using a pretrained InceptionV3 model. The dataset is derived from the NIH ChestX-ray14 dataset, and the model is trained to identify multiple thoracic pathologies from radiographic images.
-📂 Directory Structure
-plaintext
-chestxray_data/
-├── images/                     # Contains all chest X-ray images
-├── train_labels/train_labels.csv
-└── test_labels/test_labels.csv
-🚀 Features
-Custom PyTorch Dataset class for flexible data handling
-Image transformations with torchvision.transforms
-Pretrained InceptionV3 backbone fine-tuned for multi-label output
-Auxiliary loss support for improved training stability
-Training and validation loop with real-time loss tracking
-Model checkpointing after each epoch
-🛠️ Dependencies
-bash
-pip install torch torchvision pandas scikit-learn tqdm pillow
-🧠 Model Architecture
-Base: InceptionV3 pretrained on ImageNet
-Output: Modified fc and AuxLogits.fc layers to match number of labels
-Loss: BCEWithLogitsLoss with weighted auxiliary output
-Optimizer: Adam with learning rate 1e-4
-🧪 Training
-Run the training script to begin model fine-tuning:
-bash
-python train.py
-During each epoch, logs will show training and validation losses, and a checkpoint will be saved as:
-bash
-/content/inceptionv3_epoch{n}.pth
-📊 Data Loading and Preprocessing
-All image files are loaded via PIL and converted to RGB
-Transforms applied:
-Resize to (299, 299)
-Random horizontal flip
-Normalization to ImageNet standards
-📈 Evaluation
-The model is evaluated on a validation split from the training data (10%). For a rigorous benchmark, integrate the test_labels.csv split.
-📎 Label Configuration
-all_labels are dynamically determined from CSV column names, excluding the Image Index.
-✍️ Citation and Acknowledgement
-This project adapts and fine-tunes NIH ChestX-ray14 and leverages pretrained models from PyTorch.
+# Vision Transformer (ViT) for Multilabel Chest X-ray Classification
+
+This notebook implements a Vision Transformer (ViT) model for multilabel classification on chest X-ray images using PyTorch and Hugging Face's Transformers library. The goal is to compare its performance with an InceptionV3 model already implemented separately.
+
+---
+
+## 🔍 Project Objective
+
+The objective is to classify chest X-ray images into multiple possible conditions, including:
+- Atelectasis
+- Cardiomegaly
+- Effusion
+- Infiltration
+- Mass
+- Nodule
+- Pneumonia
+- Pneumothorax
+- Consolidation
+- Edema
+- Emphysema
+- Fibrosis
+- Pleural Thickening
+- Hernia
+
+This is a **multilabel classification** task where each image can have multiple associated labels.
+
+---
+
+## 🧪 Model Architecture
+
+The implemented model is based on `google/vit-base-patch16-224-in21k` and fine-tuned for multilabel classification. Key modifications:
+- Replaced the classification head with a linear layer of output size = number of labels.
+- Used `BCEWithLogitsLoss` to support multilabel output.
+
+---
+
+## ⚙️ Setup
+
+Install the required packages:
+
+```bash
+pip install transformers torch torchvision torchaudio pandas scikit-learn
+```
 
 
 !<img width="580" height="490" alt="image" src="https://github.com/user-attachments/assets/9af957e5-e12a-496f-b394-72411e6d3cf9" />
