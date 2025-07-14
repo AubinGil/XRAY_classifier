@@ -41,3 +41,7 @@ The model is evaluated on a validation split from the training data (10%). For a
 all_labels are dynamically determined from CSV column names, excluding the Image Index.
 ✍️ Citation and Acknowledgement
 This project adapts and fine-tunes NIH ChestX-ray14 and leverages pretrained models from PyTorch.
+
+
+!<img width="580" height="490" alt="image" src="https://github.com/user-attachments/assets/9af957e5-e12a-496f-b394-72411e6d3cf9" />
+
